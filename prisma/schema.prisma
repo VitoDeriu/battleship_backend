@@ -13,26 +13,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// prisma/schema.prisma
+model Users {
+  id              String   @id @default(uuid())
+  firstname       String
+  lastname        String
+  username        String   @unique
+  email           String   @unique
+  password        String
+  profile_picture String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
-model Article {
-  id          Int      @id @default(autoincrement())
-  title       String   @unique
-  description String?
-  body        String
-  published   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  author      User?    @relation(fields: [authorId], references: [id])
-  authorId    Int?
+  GamesAsPlayer1 Games[] @relation("player1")
+  GamesAsPlayer2 Games[] @relation("player2")
+
+  GamesWon Games[]
 }
 
-model User {
-  id        Int       @id @default(autoincrement())
-  name      String?
-  email     String    @unique
-  password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  articles  Article[]
+model Games {
+  id         String @id @default(uuid())
+  id_player1 String
+  id_player2 String
+  player1    Users  @relation("player1", fields: [id_player1], references: [id])
+  player2    Users  @relation("player2", fields: [id_player2], references: [id])
+
+  winnerId String? //optionnel parce que la partie peut ne pas être terminé lorsqu'elle est enregistrer
+  winner   Users?  @relation(fields: [winnerId], references: [id]) // également optionnel pour les memes raisons
+
+  status    String //exemple : "waiting", "in_progress", "finished" voir pour faire une enum peut etre
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  boardGame Json //le json de la partie faut que je fasse un json d'exemple
 }

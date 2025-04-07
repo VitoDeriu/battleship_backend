@@ -9,35 +9,23 @@ const prisma = new PrismaClient();
 const roundOfHashing = 10;
 
 async function main() {
-  //create 2 dummy users
-  const passwordSabin = await bcrypt.hash('password-sabin', roundOfHashing);
-  const passwordAlex = await bcrypt.hash('password-alex', roundOfHashing);
+
+  //create admin user
+  const password = await bcrypt.hash('kantin', roundOfHashing);
 
   const user1 = await prisma.user.upsert({
-    where: { email: 'sabin@adams.com' },
+    where: { email: 'admin@battleship.com' },
     update: {
-      password: passwordSabin
+      password: password
     },
     create: {
-      email: 'sabin@adams.com',
-      name: 'Sabin Adams',
-      password: passwordSabin,
+      email: 'admin@battleship.com',
+      name: 'Admin',
+      password: password,
     },
   });
 
-  const user2 = await prisma.user.upsert({
-    where: { email: 'alex@ruheni.com' },
-    update: {
-      password: passwordAlex
-    },
-    create: {
-      email: 'alex@ruheni.com',
-      name: 'Alex Ruheni',
-      password: passwordAlex,
-    },
-  });
-
-  // create 3 dummy articles
+  // create a dummy article
   const post1 = await prisma.article.upsert({
     where: { title: 'Prisma Adds Support for MongoDB' },
     update: {
@@ -53,34 +41,7 @@ async function main() {
     },
   });
 
-  const post2 = await prisma.article.upsert({
-    where: { title: "What's new in Prisma? (Q1/22)" },
-    update: {
-      authorId: user2.id,
-    },
-    create: {
-      title: "What's new in Prisma? (Q1/22)",
-      body: 'Our engineers have been working hard, issuing new releases with many improvements...',
-      description:
-        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
-      published: true,
-      authorId: user2.id,
-    },
-  });
-
-  const post3 = await prisma.article.upsert({
-    where: { title: 'Prisma Client Just Became a Lot More Flexible' },
-    update: {},
-    create: {
-      title: 'Prisma Client Just Became a Lot More Flexible',
-      body: 'Prisma Client extensions provide a powerful new way to add functionality to Prisma in a type-safe manner...',
-      description:
-        'This article will explore various ways you can use Prisma Client extensions to add custom functionality to Prisma Client..',
-      published: true,
-    },
-  });
-
-  console.log({ user1, user2, post1, post2, post3 });
+  console.log({ user1, post1});
 }
 
 // execute the main function
