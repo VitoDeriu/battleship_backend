@@ -20,6 +20,7 @@ model Users {
   username        String   @unique
   email           String   @unique
   password        String
+  is_admin        Boolean
   profile_picture String?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -41,7 +42,7 @@ model Games {
   winner   Users?  @relation(fields: [winnerId], references: [id]) // également optionnel pour les memes raisons
 
   status    String //exemple : "waiting", "in_progress", "finished" voir pour faire une enum peut etre
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
   boardGame Json //le json de la partie faut que je fasse un json d'exemple
 }

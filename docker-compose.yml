@@ -4,9 +4,11 @@ version: '3.8'
 services:
 
   postgres:
-    image: postgres:13.5
+    image: postgres:latest
+    container_name: battleship-backend
     restart: always
     environment:
+      - POSTGRES_DB=battleship_backend
       - POSTGRES_USER=kantin
       - POSTGRES_PASSWORD=password
     volumes:

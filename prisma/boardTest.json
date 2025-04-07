@@ -1,0 +1,164 @@
+{
+  "players": {
+    "player1": {
+      "id": "uuid_player1_test",
+      "ships": [
+        {
+          "id": "11",
+          "type": "porte-avion",
+          "positions": [
+            { "x": 1, "y": 2 },
+            { "x": 2, "y": 2 },
+            { "x": 3, "y": 2 },
+            { "x": 4, "y": 2 },
+            { "x": 5, "y": 2 }
+          ],
+          "hits": 0,
+          "sunk": false
+        },
+        {
+          "id": "12",
+          "type": "cuirassé",
+          "positions": [
+            { "x": 7, "y": 3 },
+            { "x": 7, "y": 4 },
+            { "x": 7, "y": 5 },
+            { "x": 7, "y": 6 }
+          ],
+          "hits": 0,
+          "sunk": false
+        },
+        {
+          "id": "13",
+          "type": "destroyer",
+          "positions": [
+            { "x": 8, "y": 3 },
+            { "x": 8, "y": 4 },
+            { "x": 8, "y": 5 }
+          ],
+          "hits": 0,
+          "sunk": false
+        },
+        {
+          "id": "14",
+          "type": "destroyer",
+          "positions": [
+            { "x": 1, "y": 7 },
+            { "x": 1, "y": 8 },
+            { "x": 1, "y": 9 }
+          ],
+          "hits": 0,
+          "sunk": false
+        },
+        {
+          "id": "15",
+          "type": "torpilleur",
+          "positions": [
+            { "x": 5, "y": 8 },
+            { "x": 5, "y": 9 }
+          ],
+          "hits": 0,
+          "sunk": false
+        }
+
+      ],
+      "shots": [
+        { "x": 3, "y": 2, "result": "hit", "timestamp": "2023-03-22T10:00:00Z" },
+        { "x": 4, "y": 5, "result": "miss", "timestamp": "2023-03-22T10:01:00Z" }
+      ]
+    },
+    "player2": {
+      "id": "uuid-ou-identifiant",
+      "ships": [
+        {
+          "id": "21",
+          "type": "porte-avion",
+          "positions": [
+            { "x": 1, "y": 2 },
+            { "x": 2, "y": 2 },
+            { "x": 3, "y": 2 },
+            { "x": 4, "y": 2 },
+            { "x": 5, "y": 2 }
+          ],
+          "hits": 0,
+          "sunk": false
+        },
+        {
+          "id": "22",
+          "type": "cuirassé",
+          "positions": [
+            { "x": 7, "y": 3 },
+            { "x": 7, "y": 4 },
+            { "x": 7, "y": 5 },
+            { "x": 7, "y": 6 }
+          ],
+          "hits": 0,
+          "sunk": false
+        },
+        {
+          "id": "23",
+          "type": "destroyer",
+          "positions": [
+            { "x": 8, "y": 3 },
+            { "x": 8, "y": 4 },
+            { "x": 8, "y": 5 }
+          ],
+          "hits": 0,
+          "sunk": false
+        },
+        {
+          "id": "24",
+          "type": "destroyer",
+          "positions": [
+            { "x": 1, "y": 7 },
+            { "x": 1, "y": 8 },
+            { "x": 1, "y": 9 }
+          ],
+          "hits": 0,
+          "sunk": false
+        },
+        {
+          "id": "25",
+          "type": "torpilleur",
+          "positions": [
+            { "x": 5, "y": 8 },
+            { "x": 5, "y": 9 }
+          ],
+          "hits": 0,
+          "sunk": false
+        }
+
+      ],
+      "shots": [
+        { "x": 1, "y": 2, "result": "miss", "timestamp": "2023-03-22T10:02:00Z" }
+      ]
+    }
+  },
+  "currentTurn": "player2",
+  "actions": [
+    {
+      "turn": 1,
+      "player": "player1",
+      "action": "shoot",
+      "coordinates": { "x": 3, "y": 2 },
+      "result": "hit"
+    },
+    {
+      "turn": 2,
+      "player": "player2",
+      "action": "shoot",
+      "coordinates": { "x": 1, "y": 2 },
+      "result": "miss"
+    },
+    {
+      "turn": 3,
+      "player": "player1",
+      "action": "shoot",
+      "coordinates": { "x": 4, "y": 5 },
+      "result": "miss"
+    }
+  ],
+  "status": "in_progress",
+  "startedAt": "2023-03-22T09:55:00Z",
+  "finishedAt": null
+}
