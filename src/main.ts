@@ -8,9 +8,9 @@ async function bootstrap() {
   //création du module d'app avec NestFactory
   const app = await NestFactory.create(AppModule);
 
-  //did a l'app d'utiliser ValidationPipe comme GlobalPipe
+  //dit a l'app d'utiliser ValidationPipe comme GlobalPipe (le truc pour valider les email et tout)
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
-  //dis a l'app d'utiliser ClassSerializerInterceptor comme GlobalInterceptor
+  //dit a l'app d'utiliser ClassSerializerInterceptor comme GlobalInterceptor (le truc pour empecher au mdp d'aller dans la réponse d'un getuser)
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
 
   //config de swagger
@@ -25,7 +25,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  //dis à l'app d'utiliser les filtres d'exception de prisma
+  //dit à l'app d'utiliser les filtres d'exception de prisma
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
 

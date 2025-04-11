@@ -10,7 +10,7 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<AuthEntity> {
     //on va chercher si l'user existe
-    const user = await this.prisma.user.findUnique({ where: { email: email } });
+    const user = await this.prisma.users.findUnique({ where: { email: email } });
 
     //si y'a pas on retourne une erreur
     if (!user) {

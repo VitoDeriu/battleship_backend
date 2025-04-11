@@ -15,25 +15,25 @@ export class UsersService {
 
     createUserDto.password = hashedPassword;
 
-    return this.prisma.user.create({ data: createUserDto });
+    return this.prisma.users.create({ data: createUserDto });
   }
 
   findAll() {
-    return this.prisma.user.findMany();
+    return this.prisma.users.findMany();
   }
 
-  findOne(id: number) {
-    return this.prisma.user.findUnique({ where: { id } });
+  findOne(id: string) {
+    return this.prisma.users.findUnique({ where: { id } });
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateUserDto: UpdateUserDto) {
     if (updateUserDto.password) {
       updateUserDto.password = await bcrypt.hash(updateUserDto.password, roundOfHashing);
     }
-    return this.prisma.user.update({ where: { id }, data: updateUserDto });
+    return this.prisma.users.update({ where: { id }, data: updateUserDto });
   }
 
-  remove(id: number) {
-    return this.prisma.user.delete({ where: { id } });
+  remove(id: string) {
+    return this.prisma.users.delete({ where: { id } });
   }
 }

@@ -15,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') { //les argum
   }
 
   //on va aller valider le jwt en lui passant le JSON qui a été décodé par passport-jwt, si aucun user n'est reconnu alors on throw une erreur
-  async validate(payload: { userId: number}) {
+  async validate(payload: { userId: string}) {
     const user = await this.userService.findOne(payload.userId);
     if(!user) {
       throw new UnauthorizedException();
