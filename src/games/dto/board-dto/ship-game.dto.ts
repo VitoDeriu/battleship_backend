@@ -1,6 +1,7 @@
 import { PositionGameDto } from './position-game.dto';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class ShipGameDto {
 
@@ -14,9 +15,16 @@ export class ShipGameDto {
   @IsNotEmpty()
   type: string; //nom du bateau (exemple : porte-avion)
 
+  @ApiProperty()
+  @IsString()
+  @Type(() => PositionGameDto)
   position: PositionGameDto[]; //liste des dto des postions, on y mettra les positions du bateau.
 
+  @ApiProperty()
+  @IsInt()
   hits: number; //nombre de fois que le bateau est touché
 
+  @ApiProperty()
+  @IsBoolean()
   sunk: boolean; //si le bateau est touché
 }
