@@ -10,6 +10,7 @@ async function bootstrap() {
 
   //dit a l'app d'utiliser ValidationPipe comme GlobalPipe (le truc pour valider les email et tout)
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+
   //dit a l'app d'utiliser ClassSerializerInterceptor comme GlobalInterceptor (le truc pour empecher au mdp d'aller dans la réponse d'un getuser)
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
 
@@ -30,7 +31,8 @@ async function bootstrap() {
   app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
 
   //lance le serveur sur le port 4000
-  await app.listen(process.env.PORT ?? 4000);
+  //todo: faire les variable d'environnement correctement
+  await app.listen(4000);
 }
 
 bootstrap();

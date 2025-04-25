@@ -33,5 +33,4 @@ export class CreateUserDto {
   @ApiProperty()
   is_admin: boolean;
 
-
 }

@@ -20,6 +20,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') { //les argum
     if(!user) {
       throw new UnauthorizedException();
     }
-    return user;
+    return user; //on peut acceder ici aux info de l'utilisateur correspondant au token via req.user
   }
 }

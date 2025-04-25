@@ -1,19 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Article` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "Article" DROP CONSTRAINT "Article_authorId_fkey";
-
--- DropTable
-DROP TABLE "Article";
-
--- DropTable
-DROP TABLE "User";
-
 -- CreateTable
 CREATE TABLE "Users" (
     "id" TEXT NOT NULL,
@@ -38,7 +22,7 @@ CREATE TABLE "Games" (
     "winnerId" TEXT,
     "status" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "updatedAt" TIMESTAMP(3),
     "boardGame" JSONB NOT NULL,
 
     CONSTRAINT "Games_pkey" PRIMARY KEY ("id")

@@ -5,7 +5,7 @@ import {
   Body,
   Patch,
   Param,
-  Delete, ParseIntPipe, NotFoundException, UseGuards,
+  Delete, ParseIntPipe, NotFoundException, UseGuards, Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -15,7 +15,7 @@ import { UserEntity } from './entities/user.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('users')
-@ApiTags('users')
+@ApiTags('Users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -32,6 +32,16 @@ export class UsersController {
   async findAll() {
     const users = await this.usersService.findAll();
     return users.map((user) => new UserEntity(user));
+  }
+
+  //faire une route /users/me
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: UserEntity })
+  async findMe(@Req() req: any) {
+    //on recup l'utilisateur connecté depuis req.user grace au jwtStrategy
+    return new UserEntity(req.user);
   }
 
   @Get(':id')
