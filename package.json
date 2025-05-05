@@ -42,7 +42,6 @@
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "socket.io": "^4.8.1",
-    "socket.oi": "^0.0.1-security.8",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
