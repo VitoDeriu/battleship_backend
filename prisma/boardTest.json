@@ -60,7 +60,6 @@
           "hits": 0,
           "sunk": false
         }
-
       ],
       "shots": [
         { "x": 3, "y": 2, "result": "hit", "timestamp": "2023-03-22T10:00:00Z" },
